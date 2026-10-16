@@ -1,0 +1,26 @@
+name: Daily French reminder
+on:
+  schedule:
+    - cron: '30 13 * * *'   # 13:30 UTC = 5:30 pm Mauritius time (GitHub may run it a few minutes late)
+  workflow_dispatch: {}     # "Run workflow" button for a test
+permissions:
+  contents: read
+  issues: write
+  actions: write
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save web-push@3.6.7
+      - run: node .github/remind.js
+        env:
+          VAPID_PUBLIC_KEY: BHn5HC3yl3sTG2BcU3OADqJ19GxmXdDcYBeLVRkZNYeHnK14BfvfMPtnNwQSbd4hml6GPpRnoho40RvS1Xky3uU
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          PUSH_SUBSCRIPTIONS: ${{ secrets.PUSH_SUBSCRIPTIONS }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
