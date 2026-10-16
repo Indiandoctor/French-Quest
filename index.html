@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <!--
   French Quest — a French-learning game for children in Mauritius (public web app version). Works offline in Edge or Chrome.
-  Follows the topics of the MIE textbooks "J'apprends le français" (Grade 3, Parts 1-2; Grade 4, Part 1).
+  Follows the topics of the MIE textbooks "J'apprends le français" (Grade 3, Parts 1-2; Grade 4, Parts 1-2).
   All stories, dialogues, exercises and drawings were written for this game.
   Fonts: Fredoka, Luckiest Guy, Patrick Hand (SIL Open Font License) via Fontsource.
 -->
@@ -502,7 +502,7 @@ svg.dodo { overflow: visible; } svg.dodo.cheer { animation: bob .9s infinite; }
 
 <script>
 "use strict";
-const FQ_PLAYERS=[["Player 1",""],["Player 2",""],["Player 3",""],["Player 4",""]]; const FQ_REPO="Indiandoctor/French-Quest"; const FQ_VAPID="BHn5HC3yl3sTG2BcU3OADqJ19GxmXdDcYBeLVRkZNYeHnK14BfvfMPtnNwQSbd4hml6GPpRnoho40RvS1Xky3uU"; const FQ_APPURL="https://indiandoctor.github.io/French-Quest/";
+const FQ_RETIRED=[]; const FQ_PLAYERS=[["Player 1",""],["Player 2",""],["Player 3",""],["Player 4",""]]; const FQ_REPO="Indiandoctor/French-Quest"; const FQ_VAPID="BHn5HC3yl3sTG2BcU3OADqJ19GxmXdDcYBeLVRkZNYeHnK14BfvfMPtnNwQSbd4hml6GPpRnoho40RvS1Xky3uU"; const FQ_APPURL="https://indiandoctor.github.io/French-Quest/";
 /* ================= CONTENT part 1: foundations + Grade 3 Dossiers 1-2 =================
    Vocab line format:  <code> <french> = <english> <emoji>
    code: m f (noun gender) mp fp (plural noun) v (verb) a (adjective m/f) p (phrase) n (number/other, no article)
@@ -1105,6 +1105,8 @@ m loup = wolf 🐺` },
     { t: 'grammar', id: 'present_3', rule: 'present_3' },
     { t: 'grammar', id: 'demonstratif', rule: 'demonstratif' },
     { t: 'grammar', id: 'feminin_eur', rule: 'feminin_eur' },
+    { t: 'grammar', id: 'gn_sujet', rule: 'gn_sujet' },
+    { t: 'grammar', id: 'ce_se', rule: 'ce_se' },
     { t: 'story', id: 'st_ferme', story: 'ferme' },
     { t: 'talk', id: 'animal_talk', talk: 'animal' },
     { t: 'boss', id: 'boss_ferme' }
@@ -1149,6 +1151,7 @@ f température = temperature 🌡️` },
     { t: 'grammar', id: 'cet_cette', rule: 'cet_cette' },
     { t: 'grammar', id: 'pluriel_x', rule: 'pluriel_x' },
     { t: 'grammar', id: 'prefixe', rule: 'prefixe' },
+    { t: 'grammar', id: 'cod', rule: 'cod' },
     { t: 'story', id: 'st_climat', story: 'climat' },
     { t: 'talk', id: 'meteo_talk', talk: 'meteo' },
     { t: 'boss', id: 'boss_climat' }
@@ -1190,11 +1193,246 @@ p Je suis fatigué. = I'm tired. 😫` },
     { t: 'grammar', id: 'sonsont', rule: 'sonsont' },
     { t: 'grammar', id: 'feminin_adj', rule: 'feminin_adj' },
     { t: 'grammar', id: 'pc_ir', rule: 'pc_ir' },
+    { t: 'grammar', id: 'question2', rule: 'question2' },
     { t: 'story', id: 'st_plantes', story: 'plantes' },
     { t: 'talk', id: 'rando', talk: 'rando' },
     { t: 'boss', id: 'boss_plantes' }
   ]
 });
+
+/* ================= CONTENT part 4: Grade 4 Part 2 (Dossiers 4–6) ================= */
+
+/* ---------------------------------------------------------------- WORLD 12 — Grade 4 Dossier 4 */
+world({
+  id: 'cuisine', fr: 'La cuisine', en: 'Cooking', emo: '🍛', place: 'Rose-Hill', color: '#ff6f00', grade: 'Grade 4 · Dossier 4', ahead: true,
+  blurb: 'Kitchen tools, cooking, Mauritian dishes, passé composé of irregular verbs, joining sentences, et/est, ses/ces, the imparfait, me/te/lui/leur, question words, writing a recipe.',
+  stages: [
+    { t: 'vocab', id: 'ustensiles', fr: 'Les ustensiles de cuisine', en: 'Kitchen things', words: `
+f marmite = cooking pot 🍲
+f casserole = saucepan [saucepan]
+f poêle = frying pan 🍳
+m four = oven [oven]
+m saladier = salad bowl 🥗
+f cuillère = spoon 🥄
+f fourchette = fork 🍴
+m couteau = knife 🔪
+f assiette = plate 🍽️
+m bol = bowl 🥣
+f tasse = cup ☕
+m tablier = apron [apron]
+m évier = sink [sink]
+m réfrigérateur = fridge [fridge]
+f râpe = grater [grater]` },
+    { t: 'vocab', id: 'cuisson', fr: 'Cuisiner', en: 'Cooking words', words: `
+v bouillir = to boil ♨️
+v frire = to fry 🍤
+v griller = to grill 🍢
+v mélanger = to mix 🥣🌀
+v éplucher = to peel 🥔🔪
+v couper = to cut 🔪🥕
+v verser = to pour 🥛⤵️
+v goûter = to taste 😋
+m sel = salt 🧂
+m sucre = sugar [sugar]
+f farine = flour 🌾
+m beurre = butter 🧈
+f huile = oil [oil]
+fp épices = spices 🌶️
+f recette = recipe 📝🍰` },
+    { t: 'vocab', id: 'plats', fr: 'Les plats de chez nous', en: 'Mauritian food & meals', words: `
+m dholl puri = dholl puri (flatbread) [flatbread]
+m briani = briani 🍚🍗
+m cari = curry 🍛
+f rougaille = rougaille (tomato sauce) 🍅🌶️
+mp achards = achards (pickled vegetables) 🥒
+m alouda = alouda (milk drink) 🥛🌹
+fp boulettes = dumplings 🥟
+fp nouilles = noodles 🍜
+mp gâteaux patates = sweet-potato cakes 🍠🍩
+m petit déjeuner = breakfast 🥐
+m déjeuner = lunch 🍱
+m goûter = afternoon snack 🍪
+m dîner = dinner 🍝` },
+    { t: 'grammar', id: 'pc_3', rule: 'pc_3' },
+    { t: 'grammar', id: 'relier', rule: 'relier' },
+    { t: 'grammar', id: 'etest', rule: 'etest' },
+    { t: 'grammar', id: 'sesces', rule: 'sesces' },
+    { t: 'grammar', id: 'imparfait_er', rule: 'imparfait_er' },
+    { t: 'grammar', id: 'coi', rule: 'coi' },
+    { t: 'grammar', id: 'interrogatifs', rule: 'interrogatifs' },
+    { t: 'story', id: 'st_cuisine', story: 'cuisine' },
+    { t: 'talk', id: 'cuisiner', talk: 'cuisiner' },
+    { t: 'boss', id: 'boss_cuisine' }
+  ]
+});
+
+/* ---------------------------------------------------------------- WORLD 13 — Grade 4 Dossier 5 */
+world({
+  id: 'musique4', fr: 'La musique', en: 'Music', emo: '🎤', place: 'Quatre-Bornes', color: '#d500f9', grade: 'Grade 4 · Dossier 5', ahead: true,
+  blurb: 'Sega instruments, musicians and shows, the imparfait of -ir and irregular verbs, prepositions, la/là/l’a/l’as, ou/où, le/la/les, time words.',
+  stages: [
+    { t: 'vocab', id: 'seg_instr', fr: 'Les instruments et le spectacle', en: 'Instruments & the show', words: `
+f maravanne = maravanne (shaker) [maracas]
+m triangle = triangle 🔺
+m bobre = bobre (musical bow) [bobre]
+m djembé = djembe drum 🥁🌍
+m clavier = keyboard (music) ⌨️🎵
+m micro = microphone 🎤
+f partition = sheet music 🎼
+f mélodie = tune / melody 🎵✨
+m rythme = rhythm 👏🥁
+m concert = concert 🎤🎆
+f scène = stage 🎭
+m chapiteau = big tent (marquee) 🎪
+m spectacle = show 🎭✨` },
+    { t: 'vocab', id: 'artistes', fr: 'Les artistes', en: 'Musicians & dancers', words: `
+m musicien = musician 👨‍🎤
+m guitariste = guitarist 🎸👨
+m pianiste = pianist 🎹👩
+m violoniste = violinist 🎻👨
+m batteur = drummer 🥁👦
+m compositeur = composer 🎼✍️
+f danseuse = dancer (woman) 💃✨
+m spectateur = spectator 👀🎭
+v applaudir = to clap 👏
+v répéter = to rehearse 🔁🎵
+p avoir le trac = to have stage fright 😰
+a impatient/impatiente = impatient ⏳` },
+    { t: 'grammar', id: 'imparfait_ir', rule: 'imparfait_ir' },
+    { t: 'grammar', id: 'prep2', rule: 'prep2' },
+    { t: 'grammar', id: 'la_la', rule: 'la_la' },
+    { t: 'grammar', id: 'ou_ou', rule: 'ou_ou' },
+    { t: 'grammar', id: 'imparfait_3', rule: 'imparfait_3' },
+    { t: 'grammar', id: 'cod_pron', rule: 'cod_pron' },
+    { t: 'grammar', id: 'indicateurs', rule: 'indicateurs' },
+    { t: 'story', id: 'st_musique4', story: 'musique4' },
+    { t: 'talk', id: 'reporter', talk: 'reporter' },
+    { t: 'boss', id: 'boss_musique4' }
+  ]
+});
+
+/* ---------------------------------------------------------------- WORLD 14 — Grade 4 Dossier 6 */
+world({
+  id: 'metiers4', fr: 'Les métiers du monde', en: 'Jobs around the world', emo: '👷', place: 'Ébène', color: '#00897b', grade: 'Grade 4 · Dossier 6', ahead: true,
+  blurb: 'Jobs and workplaces, the future of irregular verbs, richer noun groups, nouns from verbs, é/er, agreement, the infinitive and the imperative.',
+  stages: [
+    { t: 'vocab', id: 'metiers_m', fr: 'Les métiers', en: 'Jobs', words: `
+m éboueur = bin man 🗑️🚛
+m cardiologue = heart doctor ❤️🩺
+m architecte = architect 📐🏠
+m ingénieur = engineer 👷
+m informaticien = computer specialist 👨‍💻
+m journaliste = journalist 📰🎤
+m photographe = photographer 📸
+m plombier = plumber 🔧🚿
+m électricien = electrician 💡🔧
+m serveur = waiter 🍽️🤵
+m berger = shepherd 🐑🧑
+m menuisier = carpenter 🔨🪑
+m tailleur = tailor 🧵✂️
+m juge = judge 👨‍⚖️` },
+    { t: 'vocab', id: 'lieux_travail', fr: 'Les lieux de travail', en: 'Workplaces', words: `
+f usine = factory 🏭
+m bureau = office 💼🏢
+m chantier = building site 🏗️
+m atelier = workshop 🧰
+m magasin = shop / store 🏬
+m laboratoire = laboratory 🔬
+m salon de coiffure = hair salon 💈
+m commissariat = police station 👮🏢
+f caserne = fire station 🚒
+m tribunal = court (of law) ⚖️🏛️
+f ferme = farm 🚜` },
+    { t: 'vocab', id: 'actions', fr: 'Que font-ils ?', en: 'What do they do?', words: `
+v soigner = to look after (patients) 🩺
+v construire = to build 🧱👷
+v réparer = to repair 🔧
+v cultiver = to grow (crops) 🌱🚜
+v servir = to serve 🍽️
+v transporter = to carry / transport 🚚
+v coudre = to sew 🧵
+v enseigner = to teach 📚👩‍🏫
+v programmer = to program (a computer) 💻
+v nettoyer = to clean 🧹
+v livrer = to deliver 📦🚚` },
+    { t: 'grammar', id: 'futur_3', rule: 'futur_3' },
+    { t: 'grammar', id: 'enrichir_gn', rule: 'enrichir_gn' },
+    { t: 'grammar', id: 'verbe_nom', rule: 'verbe_nom' },
+    { t: 'grammar', id: 'e_er', rule: 'e_er' },
+    { t: 'grammar', id: 'accord_gn', rule: 'accord_gn' },
+    { t: 'grammar', id: 'infinitif', rule: 'infinitif' },
+    { t: 'grammar', id: 'imperatif', rule: 'imperatif' },
+    { t: 'story', id: 'st_metiers4', story: 'metiers4' },
+    { t: 'talk', id: 'interview', talk: 'interview' },
+    { t: 'boss', id: 'boss_metiers4' }
+  ]
+});
+
+/* ---------- extra word lessons for Grade 4 Part 1 (Dossiers 1–3) ---------- */
+const G4P1_EXTRA = {
+  ferme: { after: 'sauvages', stages: [
+    { t: 'vocab', id: 'familles', fr: 'Les familles d’animaux', en: 'Animal families: male, female, baby', words: `
+m taureau = bull 🐂
+m veau = calf 🐄🍼
+m bélier = ram 🐏
+f brebis = ewe (female sheep) 🐑
+m agneau = lamb 🐑🍼
+m verrat = boar (male pig) 🐗
+f truie = sow (female pig) 🐖
+m porcelet = piglet 🐷🍼
+f basse-cour = farmyard 🐓🏡
+f étable = cowshed [barn]
+m pré = meadow 🌾🐄
+f laine = wool 🧶
+v brouter = to graze 🐐🌿
+v traire = to milk (a cow) 🥛🐄` },
+    { t: 'vocab', id: 'cris', fr: 'Les cris des animaux', en: 'Animal sounds', words: `
+p Le chien aboie. = The dog barks. 🐶💬
+p Le chat miaule. = The cat meows. 🐱💬
+p La vache meugle. = The cow moos. 🐄💬
+p Le coq chante. = The rooster crows. 🐓💬
+p La poule caquette. = The hen clucks. 🐔💬
+p Le lion rugit. = The lion roars. 🦁💬
+p Le cheval hennit. = The horse neighs. 🐴💬
+p Le serpent siffle. = The snake hisses. 🐍💬
+p L'abeille bourdonne. = The bee buzzes. 🐝💬
+p L'oiseau chante. = The bird sings. 🐦💬` }
+  ] },
+  climat: { after: 'cyclone', stages: [
+    { t: 'vocab', id: 'planete', fr: 'Notre planète Terre', en: 'Our planet & climate change', words: `
+m climat = climate 🌍🌡️
+m pôle = pole (North / South) 🧊🌐
+m iceberg = iceberg 🧊🌊
+m équateur = equator 🌍➖
+f atmosphère = atmosphere ☁️🌍
+m réchauffement climatique = global warming 🌍🔥
+f usine = factory 🏭
+m gaz = gas (fumes) 💨🏭
+f éolienne = wind turbine 🌬️⚙️
+f énergie solaire = solar power ☀️🔋
+p Éteins la lumière ! = Switch off the light! 💡❌
+v polluer = to pollute 🏭💨` }
+  ] },
+  plantes: { after: 'foret', stages: [
+    { t: 'vocab', id: 'emblemes', fr: 'Les plantes et nous', en: 'Plants and people', words: `
+m potager = vegetable garden 🥕🌱
+f plante médicinale = healing plant 🌿💊
+m bois = wood 🪓🌳
+m oxygène = oxygen 🌳💨
+f déforestation = cutting down forests 🌳❌
+m emblème national = national emblem 🏳️🌺
+m érable = maple tree 🍁
+m cèdre = cedar tree 🌲
+m ravenale = traveller's palm 🌴
+f érosion = erosion (soil washed away) ⛰️💧
+p Protégeons les forêts ! = Let's protect the forests! 🌳🛡️` }
+  ] }
+};
+for (const wid in G4P1_EXTRA) {
+  const W = WORLDS.find(w => w.id === wid), X = G4P1_EXTRA[wid];
+  const at = W.stages.findIndex(s => s.id === X.after) + 1;
+  W.stages.splice(at, 0, ...X.stages);
+}
 
 /* ================= GRAMMAR RULES: teaching cards + drills =================
    Drill string format:  question with ___ | answer | wrong1,wrong2,wrong3 | English | why (optional)
@@ -1233,8 +1471,9 @@ function cj(table, lines, why) {
     const ans = tb[key];
     const forms = [...new Set(Object.values(tb))].filter(f => f !== ans);
     const vowel = /^[aeéèêiîoôuh]/i.test(ans);
-    const s = (subj.toLowerCase() === 'je' && vowel) ? "J'___ " + rest : subj + ' ___ ' + rest;
-    return { q: s, a: ans, o: forms, en, why: (why || '') .replace('{s}', subj.toLowerCase() === 'je' && vowel ? "j'" : subj).replace('{v}', ans) + (inf ? ' (' + inf + ')' : '') };
+    const elide = /(^|\s)je$/i.test(subj) && vowel;
+    const s = elide ? subj.replace(/je$/i, m => m[0] === 'J' ? "J'" : "j'") + '___ ' + rest : subj + ' ___ ' + rest;
+    return { q: s, a: ans, o: forms, en, why: (why || '').replace('{s}', elide ? "j'" : subj).replace('{v}', ans) + (inf ? ' (' + inf + ')' : '') };
   });
 }
 function D(lines) { // fill-blank drills
@@ -1586,7 +1825,7 @@ Papa et moi → ___ cuisinons.|nous|vous,ils,je|Dad and I → we cook.|Someone +
 Toi et ta sœur → ___ êtes gentils.|vous|nous,ils,tu|You and your sister → you are kind.|You + someone → vous.
 Le chien aboie. → ___ aboie.|Il|Elle,Ils,On|The dog barks. → It barks.|chien is masculine → il.
 La vache mange. → ___ mange.|Elle|Il,Elles,Ils|The cow is eating. → It is eating.|vache is feminine → elle.
-Zen et Zia dansent. → ___ dansent.|Ils|Elles,Il,Nous|Zen and Zia dance. → They dance.|A boy and a girl together → ils.`)
+Léo et Maya dansent. → ___ dansent.|Ils|Elles,Il,Nous|Léo and Maya dance. → They dance.|A boy and a girl together → ils.`)
   },
   present_ir: {
     fr: 'Le présent des verbes en -ir (finir)', en: 'Verbs like finir', emo: '🏁',
@@ -1791,6 +2030,360 @@ Ils ___ fini la randonnée.|ont|a,avons,sont|They finished the hike.|ils → ont
 Le fermier a ___ ses poules.|nourri|nourrir,nourrit,nourré|The farmer fed his hens.|nourrir → nourri.`)
   }
 };
+
+/* ================= GRADE 4 GRAMMAR (MIE Grade 4 Parts 1 & 2) ================= */
+const IMP = st => ({ je: st + 'ais', tu: st + 'ais', il: st + 'ait', nous: st + 'ions', vous: st + 'iez', ils: st + 'aient' });
+const FUT = st => ({ je: st + 'ai', tu: st + 'as', il: st + 'a', nous: st + 'ons', vous: st + 'ez', ils: st + 'ont' });
+Object.assign(RULES, {
+  /* ---------- Part 1 additions ---------- */
+  gn_sujet: {
+    fr: 'Le groupe nominal sujet', en: 'Who or what does the action?', emo: '🎯',
+    teach: [
+      T('Find the subject', 'The subject tells WHO or WHAT does the action. Ask « Qui est-ce qui … ? » or « Qu’est-ce qui … ? » before the verb.', ['Le petit veau boit du lait. → Qui est-ce qui boit ? le petit veau', 'Les poules picorent. → Qui est-ce qui picore ? les poules']),
+      T('A noun group', 'The subject can be one word (Léa) or a group of words with a noun: « le gros cochon rose ». The verb agrees with it.', ['Le fermier nourrit les animaux.', 'Les vaches de Monsieur Gaston donnent du lait.'])
+    ],
+    drills: D(`
+___ broute l'herbe. (La chèvre / Les chèvres)|La chèvre|Les chèvres,Le chèvre,Les chèvre|The goat is grazing.|broute is singular → one goat.
+___ courent dans le pré. (Le cheval / Les chevaux)|Les chevaux|Le cheval,Les chevals,La chevaux|The horses run in the field.|courent is plural → les chevaux.
+Dans « Le petit chat dort », le sujet est : ___|le petit chat|dort,petit,le|In "The little cat sleeps" the subject is…|Qui est-ce qui dort ? Le petit chat.
+Dans « Les enfants de la ferme jouent », le sujet est : ___|les enfants de la ferme|jouent,la ferme,les enfants jouent|The subject of "The farm children play" is…|Qui est-ce qui joue ? Les enfants de la ferme.
+Dans « Le coq chante tôt », le sujet est : ___|le coq|chante,tôt,chante tôt|The subject of "The rooster crows early" is…|Qui est-ce qui chante ? Le coq.
+Mon frère et moi ___ les lapins.|nourrissons|nourrit,nourrissent,nourris|My brother and I feed the rabbits.|« Mon frère et moi » = nous.`)
+  },
+  ce_se: {
+    fr: 'ce ou se ?', en: 'ce (this) or se (himself/herself)?', emo: '🪞',
+    teach: [T('Same sound!', '« ce » goes before a noun (ce chien) or before « est » (c’est). « se » goes before a VERB — it means himself / herself / themselves (il se lave).', ['Ce lapin est blanc.', 'Le chat se lave.', 'Les oiseaux se cachent.'], 'Trick: if you can say « me » (je me lave), write se.')],
+    drills: D(`
+Le chien ___ gratte l'oreille.|se|ce,ceux,c'|The dog scratches its ear.|Before a verb (gratte) → se.
+___ mouton est très doux.|Ce|Se,Ceux,Ces|This sheep is very soft.|Before a noun → ce.
+Les canards ___ baignent dans la mare.|se|ce,ces,c'|The ducks bathe in the pond.|Before a verb → se.
+Je n'aime pas ___ bruit.|ce|se,ces,ceux|I don't like this noise.|Before a noun → ce.
+La poule ___ cache sous la paille.|se|ce,ces,sa|The hen hides under the straw.|se + verb.
+Le singe ___ balance dans l'arbre.|se|ce,sa,ses|The monkey swings in the tree.|se + verb.`)
+  },
+  cod: {
+    fr: 'Le groupe verbal et le COD', en: 'What does the verb act on?', emo: '🎯',
+    teach: [
+      T('The verb group', 'In a sentence, the verb group is the verb and the words after it that complete it.', ['La pluie arrose les champs.', 'Le vent pousse les nuages.']),
+      T('COD = qui ? / quoi ?', 'The COD (complément d’objet direct) comes right after the verb, with NO little word like à. Find it by asking « verb + qui ? » or « verb + quoi ? ».', ['Je mange une pomme. → je mange quoi ? une pomme', 'Le cyclone casse les branches. → casse quoi ? les branches'])
+    ],
+    drills: D(`
+Dans « Papa ferme la fenêtre », le COD est : ___|la fenêtre|Papa,ferme,ferme la|In "Dad closes the window", the COD is…|Papa ferme quoi ? la fenêtre.
+Dans « Le soleil sèche le linge », le COD est : ___|le linge|le soleil,sèche,sèche le|In "The sun dries the washing", the COD is…|sèche quoi ? le linge.
+Dans « Léa écoute la radio », le COD est : ___|la radio|Léa,écoute,écoute la|In "Léa listens to the radio", the COD is…|écoute quoi ? la radio.
+Dans « Nous regardons les nuages », le COD est : ___|les nuages|nous,regardons,regardons les|In "We look at the clouds", the COD is…|regardons quoi ? les nuages.
+Dans « Le vent emporte le parapluie », le COD est : ___|le parapluie|le vent,emporte,emporte le|In "The wind blows the umbrella away", the COD is…|emporte quoi ? le parapluie.`)
+  },
+  question2: {
+    fr: 'Poser une question (inversion)', en: 'Three ways to ask a question', emo: '❔',
+    teach: [T('Three ways', '1) Just your voice: Tu viens ?  2) Est-ce que tu viens ?  3) Swap the verb and the subject with a dash: Viens-tu ? With il/elle, add -t- between two vowels: A-t-il soif ?', ['Tu aimes les fleurs ? = Est-ce que tu aimes les fleurs ? = Aimes-tu les fleurs ?', 'Où vas-tu ?', 'Arrose-t-elle les plantes ?'])],
+    drills: PK(`
+Aimes-tu les fleurs ?|Aime-tu les fleurs ?;Aimes tu les fleurs ?;Tu-aimes les fleurs ?|Do you like flowers?|Verb-subject with a dash: Aimes-tu ?
+Arrose-t-elle les plantes ?|Arrose-elle les plantes ?;Arrose elle-t les plantes ?;Arrose-t elle les plantes ?|Is she watering the plants?|Two vowels meet → -t-.
+Où allez-vous ?|Où vous-allez ?;Où allez vous ?;Où allez-vous.|Where are you going?|Verb-subject with a dash and a ?
+Est-ce que le fermier plante du maïs ?|Est-ce que le fermier plante du maïs.;Est ce que le fermier plante du maïs ?;Est-ce-que le fermier plante du maïs ?|Is the farmer planting corn?|Est-ce que … ?
+Pourquoi les feuilles tombent-elles ?|Pourquoi les feuilles tombent-ils ?;Pourquoi tombent les feuilles-elles ?;Pourquoi les feuilles tombent elles ?|Why do the leaves fall?|feuilles = elles.`)
+  },
+
+  /* ---------- Part 2 · Dossier 4: La cuisine ---------- */
+  pc_3: {
+    fr: 'Le passé composé (3e groupe)', en: 'Past tense of irregular verbs', emo: '🍰',
+    teach: [
+      T('avoir + a special past form', 'Irregular verbs have their own past form. Learn them like friends: pris (prendre), fait (faire), mis (mettre), vu (voir), bu (boire), dit (dire), écrit (écrire), lu (lire), offert (offrir), voulu (vouloir), pu (pouvoir), eu (avoir).', ['Elle a pris la recette.', 'Ils ont fait une surprise.', "J'ai bu un alouda."]),
+      T('Ending sounds', 'Many end in -i or -u (servi, dormi, vu, bu, lu, répondu, vendu). Some end in -is or -it (pris, mis, dit, écrit, fait).', ['Nous avons mis les légumes au réfrigérateur.', 'Tu as cueilli les fraises.', 'Le chef a répondu aux questions.'])
+    ],
+    drills: D(`
+Sunita a ___ la recette du gâteau. (prendre)|pris|prendu,prit,prené|Sunita took the cake recipe.|prendre → pris.
+Ils ont ___ une surprise à leur grand-mère. (faire)|fait|faire,fais,faisé|They gave their grandmother a surprise.|faire → fait.
+Ravish a ___ un poème. (écrire)|écrit|écrivé,écri,écrire|Ravish wrote a poem.|écrire → écrit.
+J'ai ___ la limonade de papa. (boire)|bu|boit,bois,buvé|I drank Dad's lemonade.|boire → bu.
+Nous avons ___ les légumes au réfrigérateur. (mettre)|mis|mettu,mit,metté|We put the vegetables in the fridge.|mettre → mis.
+Tu as ___ les fraises pour la confiture. (cueillir)|cueilli|cueillu,cueillé,cueillis|You picked the strawberries for the jam.|cueillir → cueilli.
+Ils ont ___ du thé aux invités. (servir)|servi|servu,servé,servit|They served tea to the guests.|servir → servi.
+Les filles ont ___ aux questions du chef. (répondre)|répondu|répondi,réponde,répondé|The girls answered the chef's questions.|répondre → répondu.
+Maman a ___ comment faire des crêpes. (apprendre)|appris|apprendu,apprit,apprené|Mum learnt how to make pancakes.|apprendre → appris.
+Hier, nous avons ___ un film. (voir)|vu|vois,voyé,vit|Yesterday we saw a film.|voir → vu.
+Grand-père a ___ le journal. (lire)|lu|lit,lisé,li|Grandpa read the newspaper.|lire → lu.
+Elle a ___ « merci » au cuisinier. (dire)|dit|disé,dis,du|She said "thank you" to the cook.|dire → dit.`)
+  },
+  relier: {
+    fr: 'Relier deux phrases', en: 'Joining words: et, ou, mais, parce que…', emo: '🔗',
+    teach: [T('Join two sentences', 'Little joining words make one longer sentence and avoid repeating: et (and), ou (or), mais (but), parce que / car (because), comme (as), donc (so), quand / lorsque (when).', ["J'ai apporté une salade et des faratas.", 'Rita veut faire des croquettes mais elle n’a pas de farine.', 'Nous n’irons pas à la mer parce qu’il fait froid.'])],
+    drills: D(`
+J'ai apporté une salade ___ des faratas.|et|mais,parce que,ou bien que|I brought a salad and some faratas.|Adding → et.
+Rita veut faire des crêpes ___ il n'y a pas de farine.|mais|et,ou,donc|Rita wants to make pancakes but there is no flour.|Something goes wrong → mais.
+Nous n'irons pas à la mer ___ il fait froid.|parce qu'|et,ou,mais|We won't go to the sea because it's cold.|Giving a reason → parce que.
+Tu préfères une tarte à la fraise ___ à l'abricot ?|ou|et,mais,car|Do you prefer a strawberry or an apricot tart?|A choice → ou.
+Maman est malade, ___ papa prépare le dîner.|donc|ou,car,mais|Mum is ill, so Dad is cooking dinner.|A consequence → donc.
+___ il fait beau, Nirusha invite ses amis.|Lorsqu'|Mais,Ou,Donc|When the weather is nice, Nirusha invites her friends.|When → lorsque / quand.
+Kayla est contente ___ elle a eu une bonne note.|car|ou,mais,donc|Kayla is happy because she got a good mark.|Reason → car.`).concat(B(`
+David a mal au pied, donc il ne court pas.|David's foot hurts, so he isn't running.
+Je mange une banane et je bois du lait.|I eat a banana and drink some milk.`))
+  },
+  etest: {
+    fr: 'et ou est ?', en: 'et (and) or est (is)?', emo: '⚖️',
+    teach: [T('Same sound, different jobs', '« et » joins two things (and). « est » is the verb être (is). Trick: if you can replace it with « sera », write est!', ['Elle épluche les carottes et coupe le céleri.', 'Il est fatigué. (Il sera fatigué ✔)'])],
+    drills: D(`
+Tu as cuisiné des légumes ___ de la viande.|et|est,es,ai|You cooked vegetables and meat.|and → et.
+Mon papa ___ chez son ami Paul.|est|et,es,ai|My dad is at his friend Paul's.|is → est (sera).
+Grand-mère range les assiettes ___ les tasses.|et|est,es,ai|Grandma tidies the plates and the cups.|and → et.
+Mon frère ___ content car il a réussi.|est|et,es,ait|My brother is happy because he succeeded.|is → est.
+Le papillon est rouge ___ noir.|et|est,es,ai|The butterfly is red and black.|and → et.
+En une heure, le repas ___ prêt.|est|et,es,ai|In one hour the meal is ready.|is → est.
+Loïc passe sa journée à manger ___ à boire.|et|est,es,ai|Loïc spends his day eating and drinking.|and → et.`)
+  },
+  sesces: {
+    fr: 'ses ou ces ?', en: 'ses (his/her) or ces (these)?', emo: '👉',
+    teach: [T('Same sound!', '« ces » = these (plural of ce / cet / cette): you can replace it with « les ». « ses » = his / her (plural of son / sa): you can replace it with « son » or « sa ».', ['Ces macarons sont délicieux. (Les macarons ✔)', 'Ludovic partage avec ses amis. (son ami ✔)'])],
+    drills: D(`
+Karl rencontre ___ amis chaque samedi.|ses|ces,c'est,s'est|Karl meets his friends every Saturday.|his friends → ses (son ami).
+___ dames achètent de bons fruits.|Ces|Ses,C'est,Sais|These ladies are buying nice fruit.|these → ces (les dames).
+Mange ___ crêpes au coco !|ces|ses,c'est,sait|Eat these coconut pancakes!|these → ces.
+Théo prête ___ jouets à ___ frères.|ses|ces,c'est,sais|Théo lends his toys to his brothers.|his → ses.
+___ cuillères sont neuves.|Ces|Ses,C'est,S'est|These spoons are new.|these → ces.
+Carine a oublié ___ pains au chocolat.|ses|ces,c'est,sait|Carine forgot her chocolate breads.|her → ses.`).map(d => { d.q = d.q.replace('___ frères', 'ses frères'); return d; })
+  },
+  imparfait_er: {
+    fr: "L'imparfait (1er groupe)", en: 'How things used to be', emo: '🕰️',
+    teach: [
+      T('Autrefois… (in the old days)', 'The imparfait describes something that went on for a while in the past, or happened again and again: « Autrefois, les dames cuisinaient au feu de bois. »', ['Autrefois, la cuisine se trouvait dehors.', 'Les hommes travaillaient dans les champs.']),
+      T('The endings', 'Take the « nous » form, remove -ons, and add: -ais, -ais, -ait, -ions, -iez, -aient.', ['je jouais', 'tu jouais', 'il jouait', 'nous jouions', 'vous jouiez', 'ils jouaient'], 'manger → nous mangeons → je mangeais.')
+    ],
+    drills: cj(IMP('racont'), `
+Autrefois, grand-mère|elle|des histoires.|In the old days Grandma used to tell stories.`, 'imparfait of raconter with « {s} » → « {v} »').concat(cj(IMP('cultiv'), `
+Les fermiers|ils|la terre.|The farmers used to farm the land.`, 'imparfait of cultiver → « {v} »'), cj(IMP('utilis'), `
+Tu|tu|ta bicyclette.|You used to use your bicycle.`, 'imparfait of utiliser → « {v} »'), cj(IMP('cuisin'), `
+Les dames|ils|au feu de bois.|The ladies used to cook on a wood fire.
+Nous|nous|ensemble.|We used to cook together.
+Vous|vous|le dimanche.|You used to cook on Sundays.
+Je|je|avec maman.|I used to cook with Mum.`, 'imparfait of cuisiner with « {s} » → « {v} »'), D(`
+Ramen ___ souvent la cour. (balayer)|balayait|balayais,balayaient,balayions|Ramen often used to sweep the yard.|il → -ait.
+Elles ne ___ jamais aux étrangers. (parler)|parlaient|parlait,parlais,parliez|They never used to talk to strangers.|elles → -aient.
+Je ___ les légumes avant de les couper. (laver)|lavais|lavait,lavaient,laviez|I used to wash the vegetables before cutting them.|je → -ais.
+Quand il était petit, papa ___ au foot. (jouer)|jouait|jouais,jouaient,jouiez|When he was little, Dad used to play football.|il → -ait.`))
+  },
+  coi: {
+    fr: 'Les pronoms COI : me, te, lui, nous, vous, leur', en: '« to me », « to him », « to them »…', emo: '🎁',
+    teach: [
+      T('à qui ?', 'A COI answers « à qui ? ». Instead of repeating « à Paul », use a small word BEFORE the verb: me (to me), te (to you), lui (to him / her), nous (to us), vous (to you), leur (to them).', ['Ma sœur me donne son pain. (à moi)', 'Maman lui demande… (à Paul)', 'Papa leur a acheté des tartes. (aux enfants)']),
+      T('lui or leur?', '« lui » = to ONE person (boy or girl). « leur » = to MANY people. Careful: « leur » here never takes an s!', ['Je téléphone à Isabelle → Je lui téléphone.', 'Nadia donne des bonbons à ses enfants → Nadia leur donne des bonbons.'])
+    ],
+    drills: D(`
+Je téléphone à Isabelle. → Je ___ téléphone.|lui|leur,la,le|I phone Isabelle. → I phone her.|One person → lui.
+Kelly a parlé à ces dames. → Kelly ___ a parlé.|leur|lui,les,leurs|Kelly spoke to these ladies. → Kelly spoke to them.|Many people → leur.
+Mon petit frère pleure. Maman ___ donne une tarte.|lui|leur,le,la|My little brother is crying. Mum gives him a tart.|One person → lui.
+J'ai perdu mon porte-monnaie. Peux-tu ___ passer dix roupies ?|me|te,lui,leur|I lost my purse. Can you pass me ten rupees?|to me → me.
+Les enfants sont au lit. Maman ___ raconte des histoires.|leur|lui,les,leurs|The children are in bed. Mum tells them stories.|Many → leur.
+Papa pose une question à moi. → Papa ___ pose une question.|me|te,lui,nous|Dad asks me a question.|à moi → me.
+Le chef donne des conseils à Michel et moi. → Le chef ___ donne des conseils.|nous|vous,leur,lui|The chef gives Michel and me advice.|someone + me → nous.
+Il a téléphoné à Stéphanie et toi. → Il ___ a téléphoné.|vous|nous,leur,lui|He phoned Stéphanie and you.|someone + you → vous.`)
+  },
+  interrogatifs: {
+    fr: 'Les mots interrogatifs', en: 'qui, que, quand, où, comment, pourquoi…', emo: '🕵️',
+    teach: [T('Question words', 'qui ? (who) · que / qu’est-ce que ? (what) · quand ? (when) · où ? (where) · comment ? (how) · pourquoi ? (why) · combien ? (how many) · quel / quelle / quels / quelles ? (which) — quel agrees with the noun!', ['Que feras-tu avec ces ingrédients ?', 'Quand feras-tu ton gâteau ?', 'Quelles épices utilises-tu ?'])],
+    drills: D(`
+___ feras-tu avec ces ingrédients ? — Une génoise.|Que|Qui,Où,Quand|What will you make with these ingredients? — A sponge cake.|A thing → Que.
+___ viendra à la fête ? — Tous nos oncles.|Qui|Que,Où,Quand|Who will come to the party? — All our uncles.|A person → Qui.
+___ habitait ta grand-mère ? — À Flacq.|Où|Qui,Que,Quand|Where did your grandmother live? — In Flacq.|A place → Où.
+___ allons-nous en vacances ? — En décembre.|Quand|Qui,Que,Où|When are we going on holiday? — In December.|A time → Quand.
+___ épices mets-tu dans le cari ?|Quelles|Quel,Quels,Quelle|Which spices do you put in the curry?|épices is feminine plural → quelles.
+___ gâteau préfères-tu ?|Quel|Quelle,Quels,Quelles|Which cake do you prefer?|gâteau is masculine singular → quel.
+___ œufs faut-il pour la recette ? — Trois.|Combien d'|Comment,Quand,Pourquoi|How many eggs are needed for the recipe? — Three.|A number → combien.
+___ fais-tu la pâte ? — Avec de la farine et de l'eau.|Comment|Combien,Qui,Où|How do you make the dough? — With flour and water.|How → comment.`)
+  },
+
+  /* ---------- Part 2 · Dossier 5: La musique ---------- */
+  imparfait_ir: {
+    fr: "L'imparfait (2e groupe)", en: 'Used to… for verbs like finir', emo: '📻',
+    teach: [T('-iss- + imparfait endings', 'Verbs like finir keep « -iss- »: je finissais, tu finissais, il finissait, nous finissions, vous finissiez, ils finissaient.', ['Ces années-là, nous choisissions du rock.', 'La musique nous remplissait de joie.'])],
+    drills: cj(IMP('finiss'), `
+Le concert|il|à minuit.|The concert used to finish at midnight.
+Nous|nous|nos répétitions tard.|We used to finish our rehearsals late.
+Je|je|toujours mes devoirs.|I always used to finish my homework.`, 'imparfait of finir with « {s} » → « {v} »').concat(D(`
+Autrefois, Jean ___ ses chanteurs préférés. (applaudir)|applaudissait|applaudisait,applaudissaient,applaudissions|In the old days Jean used to applaud his favourite singers.|il → -issait.
+La ravanne ___ le séga typique. (enrichir)|enrichissait|enrichisait,enrichissaient,enrichissais|The ravanne used to enrich the traditional sega.|elle → -issait.
+Les concerts ___ les gens le samedi soir. (divertir)|divertissaient|divertissait,divertissions,divertissiez|The concerts used to entertain people on Saturday evenings.|ils → -issaient.
+La musique ___ toutes les cultures. (unir)|unissait|unisait,unissaient,unissions|Music used to unite all cultures.|elle → -issait.
+Nous ___ la chanson pour le concert. (choisir)|choisissions|choisissons,choisissiez,choisissaient|We used to choose the song for the concert.|nous → -issions.`))
+  },
+  prep2: {
+    fr: 'Les prépositions (2)', en: 'dans, avec, pendant, depuis, jusqu’à, pour…', emo: '🧭',
+    teach: [T('Little words that link', 'Prepositions link words and give them meaning: dans (in), avec (with), sans (without), pour (for / to), pendant (during), depuis (since / for), jusqu’à (until / as far as), vers (towards), par (by / through), sur (on), sous (under).', ['Je prends des cours de piano depuis un an.', 'Ils sont partis avec leurs tambours.', 'Nous avons marché jusqu’à la ferme.'])],
+    drills: D(`
+Je prends des cours de piano ___ un an.|depuis|pendant que,sans,vers|I have been taking piano lessons for a year.|For a time that is still going on → depuis.
+Ils sont partis ___ leurs tambours.|avec|sans que,depuis,jusqu'à|They left with their drums.|with → avec.
+Le ségatier tape ___ sa ravanne.|sur|dessous,depuis,pendant|The sega player beats on his ravanne.|on → sur.
+Mira apprend ___ jouer du piano.|à|de,par,sur|Mira is learning to play the piano.|apprendre à + verb.
+Nous avons marché ___ la ferme.|jusqu'à|avec,depuis,sous|We walked as far as the farm.|as far as → jusqu'à.
+Sarah se dépêche ___ ne pas rater le concert.|pour|à,sans,vers|Sarah hurries so as not to miss the concert.|in order to → pour.
+J'attends l'orchestre ___ une heure.|depuis|par,vers,sur|I've been waiting for the orchestra for an hour.|still waiting → depuis.
+La salle est décorée ___ la fête de la musique.|pour|avec,dans,sous|The room is decorated for the music festival.|for → pour.`)
+  },
+  la_la: {
+    fr: 'la, là, l’a ou l’as ?', en: 'Four words that sound the same', emo: '🎯',
+    teach: [
+      T('la · là', '« la » = the (la flûte), or « her / it » before a verb (elle la met dans son sac). « là » with an accent = THERE (a place).', ['C’est la journée de la musique.', 'Là, elle voit sa flûte.']),
+      T('l’a · l’as', '« l’a » and « l’as » = « it » + the verb avoir: il / elle l’a (has … it), tu l’as (you have … it). Trick: you can say « l’avait » instead.', ['Où est ta flûte ? Maman l’a rangée.', 'Tu l’as toi-même gardée dans ta chambre.'])
+    ],
+    drills: D(`
+Vous êtes encore ___ ? La fête a déjà commencé.|là|la,l'a,l'as|Are you still there? The party has already started.|a place → là.
+Sonia aime bien ___ comédie musicale.|la|là,l'a,l'as|Sonia likes the musical.|the → la.
+Guito connaît cette musique, c'est lui qui ___ composée.|l'a|la,là,l'as|Guito knows this music — he composed it.|he has … it → l'a (l'avait).
+Tu ___ jouée pour l'anniversaire d'Isabelle.|l'as|l'a,la,là|You played it for Isabelle's birthday.|tu → l'as.
+C'est à ce moment-___ que les enfants ont chanté.|là|la,l'a,l'as|It was at that moment that the children sang.|ce moment-là.
+Il joue de ___ flûte traversière.|la|là,l'a,l'as|He plays the transverse flute.|the → la.
+Ton harmonica, tu ___ caché dans le tiroir.|l'as|l'a,la,là|Your harmonica — you hid it in the drawer.|tu → l'as.`)
+  },
+  ou_ou: {
+    fr: 'ou ou où ?', en: 'ou (or) or où (where)?', emo: '🗺️',
+    teach: [T('A little accent changes everything', '« ou » (no accent) = OR: you can say « ou bien ». « où » (with an accent) = WHERE, a place.', ['Il mettra sa chemise bleue ou son t-shirt orange.', 'Le concert où il rencontrera son idole.', 'Où est ma guitare ?'])],
+    drills: D(`
+Préfères-tu le séga ___ la salsa ?|ou|où,oû,houx|Do you prefer sega or salsa?|or → ou (ou bien).
+La salle ___ vous dansez est sombre.|où|ou,oû,houx|The room where you dance is dark.|where → où.
+___ est le tambour ?|Où|Ou,Oû,Houx|Where is the drum?|where → où.
+Est-ce le son du tambour ___ du djembé ?|ou|où,oû,houx|Is it the sound of the drum or the djembe?|or → ou.
+Le stade ___ se tiendra le spectacle est loin.|où|ou,oû,houx|The stadium where the show will take place is far.|where → où.
+Veux-tu chanter ___ danser ?|ou|où,oû,houx|Do you want to sing or dance?|or → ou.`)
+  },
+  imparfait_3: {
+    fr: "L'imparfait (3e groupe)", en: 'était, avait, faisait, allait…', emo: '🎼',
+    teach: [
+      T('The most useful ones', 'être → j’étais · avoir → j’avais · faire → je faisais · aller → j’allais · venir → je venais · prendre → je prenais · dire → je disais · écrire → j’écrivais. Same endings: -ais, -ais, -ait, -ions, -iez, -aient.', ['Beethoven était un grand compositeur.', 'Il écrivait des partitions.', 'Il vivait avec une surdité.']),
+      T('Stories in the past', 'Stories often mix the imparfait (the background: il faisait beau, j’étais content) and the passé composé (what happened: soudain, il a glissé).', ['Il faisait beau. Les enfants dansaient. Soudain, Raj a glissé.'])
+    ],
+    drills: cj(IMP('ét'), `
+Beethoven|il|un grand compositeur.|Beethoven was a great composer.
+Nous|nous|très contents.|We were very happy.
+Les musiciens|ils|en retard.|The musicians were late.
+Je|je|petit.|I was little.`, 'imparfait of être with « {s} » → « {v} »').concat(cj(IMP('av'), `
+Mes grands-parents|ils|une vieille radio.|My grandparents had an old radio.
+Tu|tu|une jolie voix.|You had a lovely voice.`, 'imparfait of avoir with « {s} » → « {v} »'), D(`
+Papa ___ de la batterie quand il était jeune. (faire)|faisait|fesait,faisais,faisaient|Dad used to play the drums when he was young.|faire → il faisait.
+Melissa ___ des cours de musique. (prendre)|prenait|prennait,prenais,prendait|Melissa used to take music lessons.|prendre → elle prenait.
+Ils ___ leurs partitions. (lire)|lisaient|lisait,lirent,lisions|They used to read their sheet music.|lire → ils lisaient.
+Le chanteur ___ chaque été. (venir)|venait|viennait,venais,venaient|The singer used to come every summer.|venir → il venait.
+Nous ___ au concert le samedi. (aller)|allions|allons,alliez,allaient|We used to go to the concert on Saturdays.|aller → nous allions.
+J'___ cette chanson pour ma maman. (écrire)|écrivais|écrisais,écrivait,écrirais|I used to write this song for my mum.|écrire → j'écrivais.`))
+  },
+  cod_pron: {
+    fr: 'Les pronoms COD : le, la, les, l’', en: '« it », « him », « her », « them »', emo: '🎧',
+    teach: [T('Don’t repeat — replace!', 'To avoid repeating a COD, use le (masculine), la (feminine), les (plural) or l’ (before a vowel). They go BEFORE the verb.', ['Je regarde le concert et je le trouve amusant.', 'Sa chanson ? Plusieurs jeunes la connaissent.', 'Il écrit ses chansons et les met en ligne.'])],
+    drills: D(`
+Aimes-tu cette chanson ? Oui, je ___ aime.|l'|le,la,les|Do you like this song? Yes, I like it.|Before a vowel → l'.
+Je cherche ma trompette mais je ne ___ vois pas.|la|le,les,l'|I'm looking for my trumpet but I can't see it.|trompette is feminine → la.
+Julien a perdu son cahier mais il veut ___ retrouver.|le|la,les,lui|Julien lost his notebook but wants to find it.|cahier is masculine → le.
+Avez-vous fini vos répétitions ? Non, nous ne ___ avons pas finies.|les|la,le,leur|Have you finished your rehearsals? No, we haven't finished them.|Plural → les.
+Ria choisit sa guitare et elle ___ place dans son caddie.|la|le,les,lui|Ria chooses her guitar and puts it in her trolley.|guitare is feminine → la.
+Nous achetons nos billets et nous ___ gardons précieusement.|les|leur,le,la|We buy our tickets and keep them carefully.|billets → les.
+Le DJ prend le CD et ___ met dans l'appareil.|le|la,les,lui|The DJ takes the CD and puts it in the machine.|CD is masculine → le.`)
+  },
+  indicateurs: {
+    fr: 'Les indicateurs de temps', en: 'Time words tell you the tense', emo: '📆',
+    teach: [T('Look for the time word', 'PAST: hier, autrefois, la semaine dernière, l’été dernier, auparavant. PRESENT: aujourd’hui, maintenant, en ce moment, de nos jours. FUTURE: demain, bientôt, la semaine prochaine, dans deux jours.', ['Hier, maman nous a dit…', 'Aujourd’hui, c’est le dernier jour.', 'Demain, les vacances commenceront.'])],
+    drills: D(`
+En ce moment, il ___ au piano.|s'entraîne|s'entraînait,s'entraînera,s'est entraîné|At the moment he is practising the piano.|en ce moment → present.
+Hier, tu ___ un tour de magie.|as vu|vois,verras,voyais demain|Yesterday you saw a magic trick.|hier → past.
+Bientôt, vous ___ vos résultats.|montrerez|avez montré,montrez,montriez|Soon you will show your results.|bientôt → future.
+Demain matin, maman et moi ___ au magasin.|irons|allons hier,sommes allés,allions|Tomorrow morning Mum and I will go to the shop.|demain → future.
+L'été dernier, mes amies ___ à un concert.|étaient|seront,sont,serons|Last summer my friends were at a concert.|l'été dernier → past.
+Autrefois, Mirella ___ du saxophone.|jouait|jouera,joue,jouerait|In the old days Mirella used to play the saxophone.|autrefois → imparfait.`).concat(CL(['passé', 'présent', 'futur'], `
+Elle joue du violon en ce moment.|présent|She is playing the violin right now.
+Tu feras tes devoirs samedi matin.|futur|You will do your homework on Saturday morning.
+Autrefois, on s'éclairait à la bougie.|passé|In the old days people used candles for light.
+La semaine prochaine, nous irons voir le spectacle.|futur|Next week we will go and see the show.`))
+  },
+
+  /* ---------- Part 2 · Dossier 6: Les métiers du monde ---------- */
+  futur_3: {
+    fr: 'Le futur (3e groupe)', en: 'irai, ferai, viendrai, verrai…', emo: '🔭',
+    teach: [T('Special future stems', 'Some verbs change their stem in the future, but the endings stay -ai, -as, -a, -ons, -ez, -ont: aller → j’irai · faire → je ferai · venir → je viendrai · voir → je verrai · pouvoir → je pourrai · vouloir → je voudrai · être → je serai · avoir → j’aurai · prendre → je prendrai · dire → je dirai.', ['Plus tard, j’irai en France.', 'Elle fera des études de médecine.', 'Ils viendront demain.'])],
+    drills: cj(FUT('ir'), `
+Plus tard, je|je|en France.|Later I will go to France.
+Nous|nous|au chantier.|We will go to the building site.`, 'future of aller with « {s} » → « {v} »').concat(cj(FUT('fer'), `
+Elle|elle|des études de médecine.|She will study medicine.
+Vous|vous|un beau métier.|You will do a fine job.`, 'future of faire with « {s} » → « {v} »'), cj(FUT('viendr'), `
+Les ouvriers|ils|demain.|The workers will come tomorrow.
+Tu|tu|avec moi ?|Will you come with me?`, 'future of venir with « {s} » → « {v} »'), D(`
+Demain, nous ___ le pilote. (voir)|verrons|voirons,voyons,verons|Tomorrow we will see the pilot.|voir → verr-.
+Je ___ t'aider ce soir. (pouvoir)|pourrai|pouvrai,pourais,peux|I will be able to help you tonight.|pouvoir → pourr-.
+Il ___ le train de huit heures. (prendre)|prendra|prenera,prendera,prend|He will take the eight o'clock train.|prendre → prendr-.
+Elles ___ devenir infirmières. (vouloir)|voudront|vouleront,voulont,voudrons|They will want to become nurses.|vouloir → voudr-.`))
+  },
+  enrichir_gn: {
+    fr: 'Enrichir le groupe nominal', en: 'Adding detail to a noun', emo: '✨',
+    teach: [T('Make it richer', 'You can add detail to a noun with an adjective (un tablier blanc) or with « de / à » + another noun (un tablier de cuisinier, un gâteau au chocolat).', ['un chapeau → un grand chapeau → un grand chapeau de paille', 'une voiture → une voiture de police → une petite voiture de police rouge'])],
+    drills: PK(`
+un grand chapeau de paille|un chapeau grand de paille;un de paille grand chapeau;un grand de paille chapeau|a big straw hat|adjective (grand) before, « de paille » after the noun.
+une voiture de police rouge|une rouge voiture de police;une voiture rouge de police de;une de police voiture rouge|a red police car|« de police » sticks to « voiture ».
+une belle robe de soirée|une robe belle de soirée;une de soirée belle robe;une belle de soirée robe|a beautiful evening dress|belle comes before robe.
+un vieux camion de pompiers|un camion vieux de pompiers;un de pompiers vieux camion;un vieux de pompiers camion|an old fire engine|vieux comes before camion.`).concat(D(`
+un gâteau ___ chocolat|au|de la,à le,du au|a chocolate cake|à + le → au.
+une tarte ___ pommes|aux|à les,des,au|an apple tart|à + les → aux.
+une blouse ___ médecin|de|à,du à,aux|a doctor's coat|« of a doctor » → de.`))
+  },
+  verbe_nom: {
+    fr: 'Du verbe au nom', en: 'Making nouns from verbs', emo: '🔁',
+    teach: [T('Same family', 'Many verbs have a noun in the same family: nager → la nage · construire → la construction · chanter → le chant · danser → la danse · vendre → la vente · réparer → la réparation · soigner → les soins · enseigner → l’enseignement.', ['Le maçon construit → la construction', 'Le vendeur vend → la vente'])],
+    drills: D(`
+construire → la ___|construction|constructure,construisage,constructeur|to build → building / construction|-tion.
+réparer → la ___|réparation|répare,réparage,réparement|to repair → the repair|-ation.
+danser → la ___|danse|danseur,dansement,dansation|to dance → the dance|la danse.
+vendre → la ___|vente|vendue,vendeur,vendage|to sell → the sale|la vente.
+nager → la ___|nage|nageur,nageation,nagement|to swim → swimming (the stroke)|la nage.
+enseigner → l'___|enseignement|enseignation,enseignage,enseignant|to teach → teaching / education|-ment.
+arroser → l'___|arrosage|arrosement,arrosation,arrosoir|to water → watering|-age.
+préparer → la ___|préparation|préparage,préparement,préparateur|to prepare → preparation|-ation.`)
+  },
+  e_er: {
+    fr: 'é ou er ?', en: 'mangé or manger?', emo: '✏️',
+    teach: [T('Same sound, different job', 'Write « -er » (infinitive) after another verb or after à, de, pour: il va manger, pour réparer. Write « -é » (past participle) after avoir or être: il a mangé. Trick: replace with « vendre / vendu ». If « vendre » fits → -er. If « vendu » fits → -é.', ['Le mécanicien va réparer la voiture. (va vendre ✔)', 'Le mécanicien a réparé la voiture. (a vendu ✔)'])],
+    drills: D(`
+Le boulanger va ___ la pâte. (mélang…)|mélanger|mélangé,mélangez,mélangeait|The baker is going to mix the dough.|after « va » → -er (va vendre).
+Le plombier a ___ le robinet. (répar…)|réparé|réparer,réparez,réparait|The plumber has repaired the tap.|after « a » → -é (a vendu).
+Elle aime ___ les enfants. (soign…)|soigner|soigné,soignez,soignait|She likes looking after the children.|after « aime » → -er.
+Nous avons ___ toute la journée. (travaill…)|travaillé|travailler,travaillez,travaillais|We worked all day.|after « avons » → -é.
+Il faut ___ les mains. (lav…)|laver|lavé,lavez,lavait|You must wash your hands.|after « il faut » → -er.
+Le journaliste a ___ le président. (interview…)|interviewé|interviewer,interviewez,interviewait|The journalist interviewed the president.|after « a » → -é.`)
+  },
+  accord_gn: {
+    fr: "L'accord dans le groupe nominal", en: 'Everything in the noun group agrees', emo: '🤝',
+    teach: [T('All together!', 'In a noun group, the little word (déterminant), the noun and the adjective all agree: girl word → add e; more than one → add s.', ['un ouvrier courageux → des ouvriers courageux', 'une infirmière gentille → des infirmières gentilles'])],
+    drills: D(`
+des ___ souriantes|infirmières|infirmière,infirmiers,infirmièrent|smiling nurses|feminine plural → -es.
+les pompiers ___|courageux|courageuse,courageuxs,courageuses|the brave firefighters|-eux stays -eux in the plural.
+une ___ cuisinière|bonne|bon,bons,bonnes|a good cook (woman)|feminine singular → bonne.
+des boulangers ___|matinaux|matinals,matinal,matinales|early-rising bakers|-al → -aux.
+mes ___ chaussures noires|nouvelles|nouveaux,nouvel,nouvelle|my new black shoes|feminine plural → nouvelles.
+ces ___ pêcheurs|vieux|vieils,vieille,vieilles|these old fishermen|vieux stays vieux.
+une ___ architecte|grande|grand,grands,grandes|a tall architect (woman)|feminine singular → grande.`)
+  },
+  infinitif: {
+    fr: "L'infinitif", en: 'The name of a verb', emo: '🏷️',
+    teach: [T('The verb’s name', 'The infinitive is the verb’s name, the form in the dictionary. It ends in -er (chanter), -ir (finir, venir), -re (prendre, lire) or -oir (voir, pouvoir). To find it, say « il faut … »: il travaille → il faut travailler.', ['il soigne → soigner', 'nous construisons → construire', 'elle peut → pouvoir'])],
+    drills: D(`
+L'infinitif de « il soigne » est : ___|soigner|soigné,soignir,soigne|The infinitive of "he cares for" is…|il faut soigner.
+L'infinitif de « nous construisons » est : ___|construire|construisir,construisons,construer|The infinitive of "we build" is…|il faut construire.
+L'infinitif de « elle peut » est : ___|pouvoir|peuver,pouvre,peut|The infinitive of "she can" is…|il faut pouvoir.
+L'infinitif de « tu vends » est : ___|vendre|vender,vendir,vendu|The infinitive of "you sell" is…|il faut vendre.
+L'infinitif de « ils viennent » est : ___|venir|viennir,vener,venre|The infinitive of "they come" is…|il faut venir.
+L'infinitif de « je fais » est : ___|faire|faisir,fer,faiser|The infinitive of "I do" is…|il faut faire.`)
+  },
+  imperatif: {
+    fr: "L'impératif", en: 'Giving orders and advice', emo: '📣',
+    teach: [
+      T('No subject!', 'The impératif gives orders or advice, with only three persons and NO subject: (tu) Mange ! · (nous) Mangeons ! · (vous) Mangez !', ['Lave tes mains !', 'Écoutez le médecin.', 'Partons tôt !']),
+      T('-er verbs lose the s', 'With « tu », -er verbs lose their s: tu manges → Mange ! Other verbs keep it: Finis ! Prends ! Fais ! Viens ! Special: être → Sois sage ! avoir → N’aie pas peur !', ['Mange tes légumes !', 'Finis ton travail !', 'Sois prudent !'])
+    ],
+    drills: D(`
+(tu, laver) ___ tes mains avant de manger !|Lave|Laves,Lavez,Laver|Wash your hands before eating!|-er verb with tu → no s: Lave !
+(vous, écouter) ___ bien le pompier.|Écoutez|Écoutons,Écoute,Écouter|Listen carefully to the firefighter.|vous → -ez.
+(nous, partir) ___ tôt pour le chantier !|Partons|Partez,Pars,Partir|Let's leave early for the building site!|nous → -ons.
+(tu, finir) ___ ton travail !|Finis|Fini,Finit,Finir|Finish your work!|finir keeps the s: Finis !
+(tu, être) ___ prudent sur la route !|Sois|Es,Soit,Être|Be careful on the road!|être → Sois !
+(tu, venir) ___ voir mon atelier !|Viens|Vient,Venez,Venir|Come and see my workshop!|venir → Viens !
+(vous, prendre) ___ vos médicaments.|Prenez|Prendez,Prenons,Prends|Take your medicine.|prendre → Prenez.`)
+  }
+});
 
 /* ================= SOUNDS & SPELLING (Écrire correctement) =================
    words: one per line  "w[or]d emoji"  — the part in [ ] is the spelling being practised.
@@ -2364,6 +2957,91 @@ ME: Oui, j'ai soif. Je bois de l'eau. | Yes, I'm thirsty. I'll drink some water.
 A: Allez, on monte jusqu'au sommet ! | Come on, let's climb to the top!`, 'Talk while hiking: careful, thirsty, describing plants')
 };
 
+/* ================= GRADE 4 PART 2: stories and conversations (original texts) ================= */
+Object.assign(STORIES, {
+  cuisine: story('Les gâteaux patates de Mamie', "Grandma's sweet-potato cakes", '🍠', `
+Autrefois, Mamie préparait des gâteaux patates pour toute la famille à Divali. | In the old days Grandma used to make sweet-potato cakes for the whole family at Divali.
+Cette année, Maya et son cousin ont voulu l'aider. | This year Maya and her cousin wanted to help her.
+Premièrement, Mamie a fait bouillir les patates douces dans une grande marmite. | First, Grandma boiled the sweet potatoes in a big pot.
+Ensuite, les enfants les ont épluchées et les ont écrasées dans un saladier. | Then the children peeled them and mashed them in a bowl.
+Puis, Mamie a ajouté de la farine et une pincée de sel, et elle a mélangé la pâte. | Next, Grandma added flour and a pinch of salt, and mixed the dough.
+Avec la pâte, ils ont fait de petites boules et ils ont mis de la noix de coco et du sucre au milieu. | With the dough they made little balls and put coconut and sugar in the middle.
+Finalement, Mamie a fait frire les gâteaux dans l'huile chaude. Les enfants ne devaient pas s'approcher de la poêle ! | Finally, Grandma fried the cakes in hot oil. The children were not allowed near the pan!
+Le soir, ils ont offert les gâteaux aux voisins. « Quel délice ! » ont-ils dit. | In the evening they gave the cakes to the neighbours. "Delicious!" they said.`, `
+Pour quelle fête Mamie préparait-elle des gâteaux patates ? | Divali | Noël ; Pâques | For which festival did Grandma make sweet-potato cakes?
+Qu'est-ce que Mamie a fait en premier ? | Elle a fait bouillir les patates douces. | Elle a fait frire les gâteaux. ; Elle a ajouté du sucre. | What did Grandma do first?
+Qu'est-ce qu'on met au milieu des gâteaux ? | de la noix de coco et du sucre | du fromage ; du poulet | What goes in the middle of the cakes?
+Pourquoi les enfants ne devaient-ils pas s'approcher de la poêle ? | L'huile était très chaude. | La poêle était sale. ; Mamie dormait. | Why weren't the children allowed near the pan?`, `
+Les enfants ont épluché les patates douces. | V | The children peeled the sweet potatoes.
+Mamie a fait cuire les gâteaux au four. | F | Grandma baked the cakes in the oven.
+Les voisins ont trouvé les gâteaux délicieux. | V | The neighbours found the cakes delicious.`),
+
+  musique4: story('La fête de la musique', 'The music festival', '🎪', `
+Le 21 juin, c'est la fête de la musique dans le monde entier. | On 21 June it's the music festival all over the world.
+À l'école d'Arjun, toutes les classes préparaient un numéro depuis des semaines. | At Arjun's school, every class had been preparing an act for weeks.
+Arjun ne savait ni chanter ni danser, alors la maîtresse l'a choisi comme reporter du jour. | Arjun could neither sing nor dance, so the teacher chose him as the reporter of the day.
+Avec son micro, il est allé interroger les élèves sous le grand chapiteau. | With his microphone he went to interview the pupils under the big tent.
+« Nous allons danser le séga avec la ravanne et la maravanne ! » a dit Priya. | "We are going to dance the sega with the ravanne and the maravanne!" said Priya.
+Un garçon de Grade 6 avait le trac. Ses mains tremblaient avant de monter sur scène. | A Grade 6 boy had stage fright. His hands were shaking before he went on stage.
+Mais quand la musique a commencé, il a joué du clavier merveilleusement bien. | But when the music started, he played the keyboard wonderfully.
+À la fin, tous les spectateurs ont applaudi. Arjun a écrit son article le soir même. | At the end all the spectators clapped. Arjun wrote his article that same evening.`, `
+Quand fête-t-on la musique ? | le 21 juin | le 1er janvier ; le 25 décembre | When is the music festival?
+Pourquoi Arjun est-il le reporter ? | Il ne savait ni chanter ni danser. | Il jouait du piano. ; Il était malade. | Why is Arjun the reporter?
+Avec quels instruments dansent-ils le séga ? | la ravanne et la maravanne | la guitare et le violon ; le piano et la flûte | Which instruments do they dance the sega with?
+Que veut dire « avoir le trac » ? | avoir peur avant de monter sur scène | avoir faim ; être très content | What does "avoir le trac" mean?`, `
+Les élèves préparaient leur numéro depuis des semaines. | V | The pupils had been preparing their act for weeks.
+Le garçon de Grade 6 a mal joué. | F | The Grade 6 boy played badly.
+Les spectateurs ont applaudi. | V | The spectators clapped.`),
+
+  metiers4: story('Le jour où tout s’est arrêté', 'The day everything stopped', '🏙️', `
+Un matin, dans un petit village, tous les travailleurs ont décidé de rester à la maison. | One morning, in a little village, all the workers decided to stay at home.
+Le boulanger n'a pas fait de pain. Le facteur n'a pas livré les lettres. | The baker didn't make any bread. The postman didn't deliver the letters.
+Les éboueurs n'ont pas ramassé les poubelles et bientôt, la rue sentait très mauvais. | The bin men didn't collect the bins, and soon the street smelled very bad.
+À l'école, il n'y avait pas d'enseignante. Les enfants ne savaient pas quoi faire. | At school there was no teacher. The children didn't know what to do.
+L'après-midi, un vieux monsieur est tombé dans la rue, mais le médecin n'était pas là pour le soigner. | In the afternoon an old man fell in the street, but the doctor wasn't there to look after him.
+Le soir, les habitants se sont réunis sur la place du village. | In the evening the villagers met in the village square.
+« Chaque métier est important, a dit le chef du village. Nous avons besoin les uns des autres. » | "Every job is important," said the village chief. "We need each other."
+Le lendemain, tout le monde est retourné au travail, fier de son métier. | The next day everyone went back to work, proud of their job.`, `
+Qu'est-ce que les travailleurs ont décidé ? | de rester à la maison | de partir en vacances ; de faire la fête | What did the workers decide?
+Pourquoi la rue sentait-elle mauvais ? | Les éboueurs n'ont pas ramassé les poubelles. | Le boulanger a brûlé le pain. ; Il a plu. | Why did the street smell bad?
+Qui n'était pas là pour soigner le vieux monsieur ? | le médecin | le facteur ; le boulanger | Who wasn't there to look after the old man?
+Qu'a dit le chef du village ? | Chaque métier est important. | Restez à la maison ! ; Le pain est mauvais. | What did the village chief say?`, `
+Le facteur a livré les lettres. | F | The postman delivered the letters.
+Les enfants ne savaient pas quoi faire à l'école. | V | The children didn't know what to do at school.
+Le lendemain, tout le monde est retourné au travail. | V | The next day everyone went back to work.`)
+});
+Object.assign(TALKS, {
+  cuisiner: talk('Dans la cuisine avec Mamie', 'In the kitchen with Grandma', 'Mamie', '👵🏽', '🍳', `
+A: Tu veux m'aider à préparer le dîner ? | Do you want to help me make dinner?
+ME: Oui, Mamie ! Qu'est-ce qu'on prépare ? | Yes, Grandma! What are we making? || Non, je suis la cuisine. ; Oui, je mange la marmite.
+A: Un cari de poulet avec du riz. Peux-tu me passer la grande cuillère ? | A chicken curry with rice. Can you pass me the big spoon?
+ME: Voilà la cuillère. Est-ce que je peux éplucher les pommes de terre ? | Here's the spoon. Can I peel the potatoes? || Voilà le four. Je coupe la tasse. ; Non merci, je dors.
+A: D'accord, mais fais attention avec le couteau ! | OK, but be careful with the knife!
+ME: Promis, je ferai attention. Tu mets combien d'épices ? | Promise, I'll be careful. How many spices do you put in? || Promis, je mangerai le couteau. ; Où est-ce que tu habites ?
+A: Une cuillère de curry et un peu de sel. Goûte la sauce ! | A spoonful of curry powder and a little salt. Taste the sauce!
+ME: Mmm, c'est délicieux, Mamie ! | Mmm, it's delicious, Grandma! || Mmm, c'est un délicieux couteau. ; Je suis délicieux.`, 'Help in the kitchen: ask, offer, taste'),
+
+  reporter: talk('Le reporter du jour', 'Reporter for the day', 'Priya, danseuse', '💃🏽', '🎤', `
+A: Bonjour ! Tu veux m'interviewer pour le journal de l'école ? | Hello! Do you want to interview me for the school paper?
+ME: Oui ! Bonjour Priya. Qu'est-ce que tu vas présenter ? | Yes! Hello Priya. What are you going to perform? || Oui ! Bonjour Priya. Où est ma ravanne hier ? ; Non, je suis le journal.
+A: Nous allons danser le séga avec notre classe. | We are going to dance the sega with our class.
+ME: Depuis quand est-ce que vous répétez ? | How long have you been rehearsing? || Pourquoi est-ce que tu es une chaise ? ; Depuis demain, nous répéterons hier.
+A: Depuis trois semaines, pendant les récréations. | For three weeks, at break times.
+ME: Est-ce que tu as le trac ? | Do you have stage fright? || Est-ce que tu as le triangle de la cuisine ? ; Tu as le trac de ma sœur ?
+A: Un peu ! Mais quand j'entends la ravanne, j'oublie tout. | A little! But when I hear the ravanne, I forget everything.
+ME: Merci Priya, et bonne chance pour le spectacle ! | Thank you Priya, and good luck for the show! || Merci Priya, et bonne nuit pour le petit déjeuner ! ; Au revoir, la ravanne !`, 'Interview someone: depuis quand, est-ce que, pourquoi'),
+
+  interview: talk('La journée des métiers', 'Careers day', 'Capitaine Léo, pompier', '👨‍🚒', '🚒', `
+A: Bonjour les enfants ! Je suis pompier. Avez-vous des questions ? | Hello children! I am a firefighter. Do you have any questions?
+ME: Bonjour ! Où travaillez-vous ? | Hello! Where do you work? || Bonjour ! Où travaillez-tu ? ; Bonjour ! Vous êtes un camion ?
+A: Je travaille à la caserne de pompiers de Port-Louis. | I work at the Port-Louis fire station.
+ME: Qu'est-ce que vous faites pendant un cyclone ? | What do you do during a cyclone? || Qu'est-ce que vous mangez pendant le pompier ? ; Vous ferez hier un cyclone ?
+A: Nous aidons les familles et nous enlevons les arbres tombés sur les routes. | We help families and remove trees that have fallen on the roads.
+ME: C'est un métier dangereux. Est-ce que vous aimez votre travail ? | It's a dangerous job. Do you like your work? || C'est un métier délicieux. Est-ce que vous aimez le dessert ? ; Votre travail est mes chaussures.
+A: Oui, j'adore aider les gens ! Et toi, que feras-tu plus tard ? | Yes, I love helping people! And you, what will you do later?
+ME: Plus tard, je serai pompier, comme vous ! | Later I will be a firefighter, like you! || Hier, je serai pompier. ; Plus tard, j'étais un pompier hier.`, 'Ask polite questions with « vous »; talk about the future')
+});
+
 /* ================= PICTURES: sticker-style SVG drawings for words without an emoji ================= */
 const PIC = (() => {
   const g = (body, bg) => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">${bg ? `<circle cx="50" cy="50" r="46" fill="${bg}"/>` : ''}<g stroke="#2b1d3a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">${body}</g></svg>`;
@@ -2425,6 +3103,17 @@ const PIC = (() => {
     donkey: g('<ellipse cx="56" cy="58" rx="28" ry="18" fill="#9e9e9e"/><path d="M34 52 Q24 34 26 24 Q30 18 38 24 Q42 36 44 46" fill="#9e9e9e"/><path d="M28 24 L20 6 L30 16 M36 22 L36 4 L42 18" fill="#9e9e9e"/><ellipse cx="24" cy="30" rx="9" ry="7" fill="#d7ccc8"/><circle cx="32" cy="26" r="2.5" fill="#2b1d3a" stroke="none"/><path d="M38 72 V94 M50 74 V94 M66 74 V94 M78 70 V94" fill="none" stroke-width="6"/><path d="M84 54 Q94 58 90 72" fill="none"/>'),
     mongoose: g('<path d="M14 66 Q30 44 60 50 Q80 52 92 40 Q90 60 70 66 Q50 72 30 72 Z" fill="#a1887f"/><circle cx="20" cy="58" r="10" fill="#a1887f"/><circle cx="18" cy="55" r="2.5" fill="#2b1d3a" stroke="none"/><circle cx="10" cy="60" r="2" fill="#2b1d3a" stroke="none"/><path d="M30 72 V84 M44 72 V84 M60 70 V82" fill="none" stroke-width="5"/>'),
     barn: g('<path d="M14 44 L50 14 L86 44 V90 H14 Z" fill="#e53935"/><path d="M14 44 L50 14 L86 44" fill="none" stroke="#fff" stroke-width="4"/><rect x="34" y="56" width="32" height="34" fill="#fff"/><path d="M34 56 L66 90 M66 56 L34 90" fill="none" stroke="#e53935" stroke-width="4"/>'),
+    saucepan: g('<rect x="14" y="40" width="54" height="40" rx="6" fill="#c0c0c0"/><ellipse cx="41" cy="40" rx="27" ry="7" fill="#e0e0e0"/><path d="M68 50 H94" fill="none" stroke-width="8"/><path d="M68 50 H94" fill="none" stroke="#ff7a00" stroke-width="4"/><path d="M24 30 q4 -10 0 -18 M40 28 q4 -10 0 -18 M56 30 q4 -10 0 -18" fill="none" stroke="#9e9e9e" stroke-width="3"/>'),
+    oven: g('<rect x="12" y="12" width="76" height="78" rx="8" fill="#ff5c5c"/><rect x="20" y="36" width="60" height="44" rx="5" fill="#2b1d3a"/><rect x="26" y="42" width="48" height="32" rx="3" fill="#ffb74d"/><path d="M30 60 q20 -14 40 0" fill="none" stroke="#ff7a00"/><circle cx="30" cy="24" r="5" fill="#fff"/><circle cx="48" cy="24" r="5" fill="#fff"/><circle cx="66" cy="24" r="5" fill="#fff"/>'),
+    apron: g('<path d="M36 10 H64 V30 L84 34 L76 92 H24 L16 34 L36 30 Z" fill="#ff2e93"/><rect x="38" y="52" width="24" height="18" rx="3" fill="#ffe600"/><path d="M36 10 Q30 2 22 8 M64 10 Q70 2 78 8" fill="none"/><path d="M16 38 H4 M84 38 H96" fill="none"/>'),
+    sink: g('<rect x="8" y="46" width="84" height="14" rx="3" fill="#bdbdbd"/><path d="M22 60 H78 L72 88 H28 Z" fill="#e0e0e0"/><path d="M50 46 V22 Q50 14 60 14 H70 V22" fill="none" stroke-width="6"/><circle cx="70" cy="30" r="3" fill="#29b6f6" stroke="none"/><circle cx="70" cy="38" r="3" fill="#29b6f6" stroke="none"/>'),
+    fridge: g('<rect x="24" y="6" width="52" height="88" rx="8" fill="#e3f2fd"/><path d="M24 40 H76" fill="none"/><path d="M66 18 V30 M66 50 V68" fill="none" stroke-width="5"/><rect x="32" y="74" width="14" height="10" rx="2" fill="#ff2e93" stroke-width="2"/>'),
+    grater: g('<path d="M30 20 H70 L80 90 H20 Z" fill="#c0c0c0"/><path d="M40 8 H60 V20 H40 Z" fill="#ff7a00"/>' + [34, 48, 62].map(y => [38, 50, 62].map(x => `<path d="M${x - 4} ${y} h8" fill="none" stroke-width="3"/>`).join('')).join('')),
+    sugar: g('<path d="M20 44 L44 32 L68 44 L44 56 Z" fill="#fff"/><path d="M20 44 V66 L44 78 V56 Z" fill="#eeeeee"/><path d="M68 44 V66 L44 78 V56 Z" fill="#e0e0e0"/><path d="M46 30 L66 20 L86 30 L66 40 Z" fill="#fff"/><path d="M46 30 V50 L66 60 V40 Z" fill="#eeeeee"/><path d="M86 30 V50 L66 60 V40 Z" fill="#e0e0e0"/>'),
+    oil: g('<path d="M40 8 H60 V22 L70 36 V88 Q70 94 64 94 H36 Q30 94 30 88 V36 L40 22 Z" fill="#ffd54f"/><rect x="38" y="4" width="24" height="8" rx="2" fill="#2e7d32"/><rect x="34" y="50" width="32" height="22" rx="3" fill="#fff"/><path d="M42 61 q8 -8 16 0" fill="none" stroke="#2e7d32" stroke-width="3"/>'),
+    flatbread: g('<ellipse cx="50" cy="56" rx="42" ry="24" fill="#f4c27a"/><ellipse cx="50" cy="52" rx="42" ry="24" fill="#ffd89b"/><g fill="#c98a3a" stroke="none"><circle cx="34" cy="46" r="3"/><circle cx="56" cy="40" r="2.5"/><circle cx="66" cy="56" r="3"/><circle cx="44" cy="60" r="2.5"/></g><path d="M20 50 Q50 70 80 50" fill="none" stroke="#c98a3a" stroke-width="3"/>'),
+    maracas: g('<ellipse cx="34" cy="34" rx="18" ry="22" fill="#ff7a00" transform="rotate(-20 34 34)"/><path d="M42 54 L58 88" fill="none" stroke-width="7"/><ellipse cx="68" cy="30" rx="16" ry="20" fill="#00b8a9" transform="rotate(20 68 30)"/><path d="M62 48 L50 86" fill="none" stroke-width="7"/><path d="M26 30 l6 4 M34 22 l6 4" fill="none" stroke="#fff" stroke-width="3"/>'),
+    bobre: g('<path d="M20 90 Q8 50 30 10" fill="none" stroke="#8d5524" stroke-width="7"/><path d="M20 90 L30 10" fill="none" stroke="#2b1d3a" stroke-width="2"/><circle cx="16" cy="60" r="14" fill="#ffcc80"/><path d="M60 30 L86 74" fill="none" stroke="#a0522d" stroke-width="5"/><circle cx="80" cy="30" r="8" fill="#ffe600"/>'),
     trunk: 'TREEPART:trunk', branch: 'TREEPART:branch', roots: 'TREEPART:roots', stem: 'PLANTPART:stem'
   };
   function treePart(part) {
@@ -2543,7 +3232,13 @@ const BADGES = [
   ['g3d', '🎵', 'Séga star', 'Finish Dossier 4', p => worldDone(p, 'rodrigues')],
   ['g3e', '♻️', 'Ami de la planète', 'Finish Dossier 5', p => worldDone(p, 'nature')],
   ['g3f', '🚀', 'Grade 3 terminé !', 'Finish all of Grade 3', p => worldDone(p, 'grand')],
-  ['ahead', '⏩', 'En avance !', 'Finish a Grade 4 world', p => ['ferme', 'climat', 'plantes'].some(w => worldDone(p, w))],
+  ['ahead', '⏩', 'En avance !', 'Finish a Grade 4 world', p => ['ferme', 'climat', 'plantes', 'cuisine', 'musique4', 'metiers4'].some(w => worldDone(p, w))],
+  ['g4a', '🐄', 'Fermier', 'Finish Grade 4 Dossier 1', p => worldDone(p, 'ferme')],
+  ['g4b', '🌦️', 'Météo', 'Finish Grade 4 Dossier 2', p => worldDone(p, 'climat')],
+  ['g4c', '🌱', 'Main verte', 'Finish Grade 4 Dossier 3', p => worldDone(p, 'plantes')],
+  ['g4d', '👩‍🍳', 'Petit chef', 'Finish Grade 4 Dossier 4', p => worldDone(p, 'cuisine')],
+  ['g4e', '🎤', 'Reporter', 'Finish Grade 4 Dossier 5', p => worldDone(p, 'musique4')],
+  ['g4f', '🏆', 'Grade 4 terminé !', 'Finish all of Grade 4', p => worldDone(p, 'metiers4')],
   ['crown3', '👑', 'Trois couronnes', 'Pass 3 boss tests', p => Object.values(p.worlds).filter(w => w.crown).length >= 3],
   ['w50', '🔤', '50 mots', 'Learn 50 words', p => wordsLearnt(p) >= 50],
   ['w150', '📖', '150 mots', 'Learn 150 words', p => wordsLearnt(p) >= 150],
@@ -2578,7 +3273,7 @@ const NUMFR = ['zéro', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 
 function weekStart(n) { const d = new Date(dayStr(n) + 'T12:00:00'); const wd = (d.getDay() + 6) % 7; return n - wd; } // Monday
 
 /* ---------- storage ---------- */
-const DEFAULT_PLAYERS = (typeof FQ_PLAYERS !== 'undefined') ? FQ_PLAYERS : [['Zen', 'b'], ['Zia', 'g']];
+const DEFAULT_PLAYERS = (typeof FQ_PLAYERS !== 'undefined') ? FQ_PLAYERS : [['Player 1', ''], ['Player 2', '']];
 const AVATARS = ['🦁', '🦄', '🐯', '🐼', '🐵', '🐸', '🦊', '🐨', '🐙', '🦖', '🐬', '🦋'];
 const KEY = 'frenchquest_v1';
 let DB;
@@ -2589,15 +3284,19 @@ function newPlayer(name, i, gender) {
     quests: null, stickers: {}, badges: {}, hats: { '': 1 }, stats: {}, wrong: {}
   };
 }
-function blankDB() { return { app: 'french-quest', v: 1, roster: [], players: {}, settings: { sound: true, voice: true, music: false, english: true, speak: true, rate: 0.9, schoolWorld: 'rentree', schoolStage: 0, dailyGoal: 250 }, upd: Date.now() }; }
+function blankDB() { return { app: 'french-quest', v: 1, roster: [], players: {}, settings: { sound: true, voice: true, music: false, english: true, speak: true, rate: 0.9, schoolWorld: 'ferme', schoolStage: 0, dailyGoal: 250 }, upd: Date.now() }; }
 function fixDB(d) {
   if (!d || !d.players) d = blankDB();
   if (!d.roster.length) DEFAULT_PLAYERS.forEach(([n, g], i) => { d.roster.push(n); d.players[n] = newPlayer(n, i, g); });
   d.roster.forEach((n, i) => { if (!d.players[n]) d.players[n] = newPlayer(n, i); const p = d.players[n]; const np = newPlayer(n, i); for (const k in np) if (p[k] === undefined) p[k] = np[k]; });
   d.settings = Object.assign(blankDB().settings, d.settings || {});
+  if (!d.settings.sv) { d.settings.schoolWorld = 'ferme'; d.settings.schoolStage = 0; d.settings.sv = 1; } // Oct 2026: school has finished Grade 3
   return d;
 }
-function loadDB() { let d = null; try { d = JSON.parse(localStorage.getItem(KEY)); } catch (e) { } DB = fixDB(d); }
+// players dropped from the family roster are removed, but only if they never played (no XP, no lessons)
+const RETIRED = (typeof FQ_RETIRED !== 'undefined') ? FQ_RETIRED : [];
+function retire(d) { RETIRED.forEach(n => { const p = d.players[n]; if (p && !p.xp && !Object.keys(p.stages || {}).length) { d.roster = d.roster.filter(x => x !== n); delete d.players[n]; } }); return d; }
+function loadDB() { let d = null; try { d = JSON.parse(localStorage.getItem(KEY)); } catch (e) { } DB = retire(fixDB(d)); }
 let saveTimer = null;
 function saveDB(touch = true) { if (touch) { DB.upd = Date.now(); if (ME) ME.upd = Date.now(); } clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 300); }
 function saveNow() { try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (e) { } SYNC.schedule(); if (typeof PWA !== 'undefined') PWA.summary(); }
@@ -2635,7 +3334,7 @@ function mergeDB(local, remote) {
   out.roster = names; out.players = {};
   names.forEach(n => out.players[n] = mergePlayer(local.players[n], remote.players[n]));
   out.upd = Math.max(local.upd || 0, remote.upd || 0);
-  return out;
+  return retire(out);
 }
 
 /* ---------- SYNC: write the progress into a folder the parent picks (e.g. OneDrive\AI\Gamify\FrenchQuest-build\progress) ---------- */
@@ -3039,7 +3738,7 @@ const PRAISE = ['Bravo !', 'Super !', 'Génial !', 'Très bien !', 'Excellent !'
 const OOPS = ['Oups !', 'Pas tout à fait…', 'Essaie encore !', 'Attention !'];
 const COMBO_TXT = { 3: 'Super ! 🔥', 5: 'Génial ! 🔥🔥', 8: 'Incroyable ! ⚡', 12: 'Fantastique ! 🌟', 15: 'Imbattable ! 👑', 20: 'Légendaire ! 🦄' };
 const capFirst = s => s.charAt(0).toUpperCase() + s.slice(1);
-const fillName = s => String(s).replace(/\{NAME\}/g, ME ? ME.name : 'Zia').replace(/\{AGE\}/g, NUMFR[ME && ME.age || 8] || 'huit').replace(/\{E\}/g, ME && ME.gender === 'g' ? 'e' : '').replace(/\{CHERI\}/g, ME && ME.gender === 'g' ? 'ma chérie' : 'mon chéri');
+const fillName = s => String(s).replace(/\{NAME\}/g, ME ? ME.name : 'Maya').replace(/\{AGE\}/g, NUMFR[ME && ME.age || 8] || 'huit').replace(/\{E\}/g, ME && ME.gender === 'g' ? 'e' : '').replace(/\{CHERI\}/g, ME && ME.gender === 'g' ? 'ma chérie' : 'mon chéri');
 
 /* ---------- distractor helpers ---------- */
 function distract(it, stage, n = 3, sameKind = true) {
@@ -3482,7 +4181,7 @@ R_.fill = (q, card) => {
   LES.replay = r => sayFR(d.q.replace('___', '…'), r);
   bindOpts(card, opts, o => o === d.a, ok => { sayFR(fixSp(full)); judge(ok, { id: d.id, html: `<span class="fr">${esc(fixSp(full))}</span>`, why: d.why, noSay: true }); });
 };
-const fixSp = s => s.replace(/(\b[JjLlDdNnSsQu]') /g, '$1').replace(/' ___/g, "'___");
+const fixSp = s => s.replace(/([A-Za-zàâéèêëîïôûùç]') /g, '$1').replace(/' ___/g, "'___");
 function prepScene({ p, ae }) {
   // cat-and-box picture for prepositions
   const box = '<span class="box">📦</span>';
@@ -3856,7 +4555,7 @@ $('voiceBtn').onclick = toggleVoice; $('musicBtn').onclick = toggleMusic; $('fsB
 $('lesQuit').onclick = () => LES && LES.onEsc();
 $('helpBtn').onclick = () => modal(`<h2>❓ How to play</h2><div class="help">
   <p><b>⌨️ Keys:</b> arrows move · <b>Enter</b> chooses · <b>1–4</b> pick an answer · <b>Space</b> hear it again · <b>S</b> slowly 🐢 · <b>E</b> show/hide English · <b>H</b> hint · <b>Esc</b> back · <b>F</b> full screen · <b>V</b> voice · <b>M</b> music</p>
-  <p><b>🗺️ L’Aventure</b> follows your school book (MIE Grade 3 “J’apprends le français”) world by world, then goes AHEAD into Grade 4. Each step teaches first, then checks. Mistakes come back at the end of the lesson until you get them right!</p>
+  <p><b>🗺️ L’Aventure</b> follows your school book (MIE “J’apprends le français”) world by world: Grade 3 first, then all of Grade 4. Each step teaches first, then checks. Mistakes come back at the end of the lesson until you get them right!</p>
   <p><b>☀️ Défi du jour</b> brings back words just before you forget them (spaced repetition). Do it every day to grow your 🔥 streak.</p>
   <p><b>✍️ Dictée</b>: type words you hear. <b>Tab</b> adds an accent to the last letter: e → é → è → ê.</p>
   <p><b>🗣️ Parlons !</b>: have real conversations and speak into the microphone.</p>
@@ -3908,7 +4607,7 @@ function renderHub(noShow) {
   $('hubSide').innerHTML = `<div class="goal"><div class="ring" style="--p:${gp}"><span>${dr.xp}<small>/${goal}</small></span></div><div><b>Daily goal</b><div class="sub">${gp >= 1 ? 'Done for today! 🎉' : 'Earn ' + (goal - dr.xp) + ' more XP'}</div></div></div>
     <div class="label">Today’s quests</div>${Qs.list.map(x => { const d = QUEST_POOL.find(q => q.id === x.id); return `<div class="quest ${x.done ? 'done' : ''}"><div class="qt">${x.done ? '✅' : '🎯'} ${esc(d.fr)}<span class="sub">${esc(d.en)}</span></div><div class="qbar"><div style="width:${100 * x.prog / d.goal}%"></div></div></div>`; }).join('')}
     <button class="chest nav ${allDone && !Qs.chest ? 'ready' : ''}" id="chestBtn" ${allDone && !Qs.chest ? '' : 'disabled'}>${Qs.chest ? '📭 Chest opened' : allDone ? '🎁 Open the chest!' : '🔒 Finish 3 quests for a chest'}</button>
-    <div class="ahead ${ah.ahead > 0 ? 'yes' : ''}">${ah.ahead > 0 ? `⏩ <b>${ah.ahead}</b> step${ah.ahead > 1 ? 's' : ''} ahead of school!` : ah.ahead === 0 ? '🎯 Level with school — go ahead!' : `🏃 ${-ah.ahead} step${ah.ahead < -1 ? 's' : ''} to catch up with school`}</div>`;
+    <div class="ahead ${ah.ahead > 0 ? 'yes' : ''}">${ah.ahead > 0 ? `⏩ <b>${ah.ahead}</b> step${ah.ahead > 1 ? 's' : ''} ahead of school!` : ah.ahead === 0 ? '🎯 Level with school — go ahead!' : `🏃 ${-ah.ahead} step${ah.ahead < -1 ? 's' : ''} to reach where school is`}</div>`;
   const cb = $('chestBtn'); if (cb && !cb.disabled) cb.onclick = openChest;
   if (!noShow) show('hub');
 }
@@ -3929,7 +4628,7 @@ function renderMap() {
     WORLDS.map((W, i) => {
       const un = worldUnlocked(p, W), pr = worldProgress(p, W), crown = p.worlds[W.id] && p.worlds[W.id].crown;
       return `<button class="wcard nav sticker ${un ? '' : 'locked'} ${W.ahead ? 'ahead' : ''}" data-i="${i}" style="--c:${W.color};--r:${((i * 37) % 7 - 3) * .8}deg">
-      <span class="wnum">${i + 1}</span>${crown ? '<span class="crown">👑</span>' : ''}${W.ahead ? '<span class="aheadtag">⏩ AHEAD</span>' : ''}
+      <span class="wnum">${i + 1}</span>${crown ? '<span class="crown">👑</span>' : ''}${W.ahead ? '<span class="aheadtag">GRADE 4</span>' : ''}
       <span class="wemo">${un ? W.emo : '🔒'}</span><b class="fr">${esc(W.fr)}</b><span class="sub">${esc(W.en)}</span>
       <span class="wplace">📍 ${esc(W.place)} · ${esc(W.grade)}</span>
       <span class="wbar"><span style="width:${pr * 100}%"></span></span></button>`;
@@ -4154,7 +4853,7 @@ function renderParents() {
   <div class="paper box2"><div class="label">🔔 Daily reminder & the app</div>${reminderPanel()}</div>
   <div class="paper box2"><div class="label">📋 This week at a glance</div>${weekReport()}</div>
   <div class="paper box2"><div class="label">🧭 How the game teaches (for parents)</div><div class="sub">
-   <p>• <b>Follows the school book</b>: MIE “J’apprends le français” Grade 3 (Dossiers 1–6) — the same topics, sounds and grammar in the same order — then Grade 4 Part 1 as an “ahead” zone. Stories and dialogues are new texts written for the game, so the children meet the same language in new situations.</p>
+   <p>• <b>Follows the school book</b>: MIE “J’apprends le français” Grade 3 (Dossiers 1–6) and Grade 4 (Dossiers 1–6, Parts 1 and 2) — the same topics, sounds and grammar in the same order. Grade 3 stays open for revision; Grade 4 is marked with a GRADE 4 tag on the map. Stories and dialogues are new texts written for the game, so the children meet the same language in new situations.</p>
    <p>• <b>Teach → try → fix</b>: every new word or rule is shown and spoken first; each mistake is explained and comes back before the lesson ends.</p>
    <p>• <b>Spaced repetition</b>: every word and rule has a memory box; the Défi du jour brings items back after 1, 2, 4, 7, 15, 30 and 60 days — just before they would be forgotten.</p>
    <p>• <b>Exam skills</b>: dictée with accents, articles (le/la), être/avoir, -er verbs, negation, questions, punctuation, reading comprehension (vrai/faux) — the formats of the school “Évaluation” pages.</p>
@@ -4192,7 +4891,7 @@ function reminderPanel() {
   if (!PWA.canPush()) return `<p class="sub">This browser can’t receive reminders. Use Chrome on Android (installed app) or Chrome / Edge on a laptop.</p>`;
   const code = (() => { try { return localStorage.getItem('fq_push'); } catch (e) { return null; } })();
   return `<p class="sub">${PWA.isApp() ? '✅ Running as an installed app.' : '💡 Install the app first (Chrome menu ⋮ → <b>Install app</b> / <b>Add to Home screen</b>) — reminders are most reliable from the installed app.'}
-   Every day at <b>5:30 pm</b> the tablet shows a reminder that says who still has to practise (e.g. “Zia’s 6-day streak 🔥 is waiting!”).</p>
+   Every day at <b>5:30 pm</b> the tablet shows a reminder that says who still has to practise (e.g. “Maya’s 6-day streak 🔥 is waiting!”).</p>
    <div class="row"><button class="btn nav gold" id="rmOn">🔔 ${code ? 'Reminders are on — register again' : 'Turn on reminders on this device'}</button>${code ? '<button class="btn nav ghost" id="rmTest">🧪 Show a test reminder</button>' : ''}</div>
    <div id="rmStep" class="sub">${code ? 'If you have not done it yet: press <b>Open GitHub to register</b> and then <b>Submit</b>.<div class="row"><a class="btn nav g" id="rmReg" target="_blank" rel="noopener" href="' + esc(PWA.registerUrl(code)) + '">📝 Open GitHub to register this device</a></div>' : ''}</div>`;
 }
