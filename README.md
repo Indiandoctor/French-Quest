@@ -3,7 +3,11 @@
 A free French-learning game for children (about 7–10 years old), made for families in Mauritius.
 It follows the topics of the MIE textbooks "J'apprends le français" — Grade 3 (Dossiers 1–6) and Grade 4 (Dossiers 1–6).
 
-**Play:** https://indiandoctor.github.io/French-Quest/
+## Play the game
+
+**▶ Play now: https://indiandoctor.github.io/French-Quest/**
+
+Opens in any modern browser. No download, account or sign-in needed.
 
 - 14 worlds, 158 lessons: words with pictures and a French voice, spelling and dictée, grammar explained step by step,
   stories with comprehension questions, conversations with speaking practice, and a boss test for each world.
